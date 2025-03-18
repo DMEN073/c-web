@@ -42,7 +42,7 @@ int main()
 {
     // Initialize SDL
     SDL_Init(SDL_INIT_VIDEO);
-    window = SDL_CreateWindow("ImGui + Emscripten", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_OPENGL);
+    window = SDL_CreateWindow("website with imgui c++", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_OPENGL);
     gl_context = SDL_GL_CreateContext(window);
 
     // Initialize ImGui

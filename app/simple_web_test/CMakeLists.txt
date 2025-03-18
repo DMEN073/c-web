@@ -1,9 +1,9 @@
 set(CMAKE_EXECUTABLE_SUFFIX ".html")
+set(EMSCRIPTEN_PATH ${CMAKE_SOURCE_DIR}/../emsdk/upstream/emscripten/cache/sysroot/include/SDL2)
 set(EXE_NAME simple_web_test_app)
 set(EXE_PATH ${CMAKE_SOURCE_DIR}/app/simple_web_test)
 set(IMGUI_PATH ${CMAKE_SOURCE_DIR}/3rdParty/imgui)
-include_directories(${CMAKE_SOURCE_DIR}/../emsdk/upstream/emscripten/cache/sysroot/include/SDL)
-
+message(STATUS "CMAKE toolchain file is ${CMAKE_TOOLCHAIN_FILE}")
 
 add_library(imgui STATIC
 ${IMGUI_PATH}/imgui.cpp
@@ -17,13 +17,13 @@ ${EXE_PATH}/main.cpp
 ${IMGUI_PATH}/backends/imgui_impl_sdl2.cpp 
 ${IMGUI_PATH}/backends/imgui_impl_opengl3.cpp
 )
-target_include_directories(${EXE_NAME} PUBLIC ${IMGUI_PATH})
+target_include_directories(${EXE_NAME} PUBLIC ${IMGUI_PATH} ${EMSCRIPTEN_PATH})
 target_link_libraries(${EXE_NAME} PUBLIC imgui)
-# target_link_options(${EXE_NAME} PUBLIC 
-#     "-sUSE_SDL=2"
-#     "-sUSE_WEBGL2=1"
-#     "-sFULL_ES3=1"
-# )
+target_compile_options(${EXE_NAME} PUBLIC 
+"-sUSE_SDL=2")
+target_link_options(${EXE_NAME} PUBLIC 
+"-sUSE_SDL=2")
+
 
 set_target_properties(${EXE_NAME} PROPERTIES
     OUTPUT_NAME "${EXE_NAME}"

@@ -2,7 +2,7 @@
 #include <backends/imgui_impl_sdl2.h>
 #include <backends/imgui_impl_opengl3.h>
 #include <SDL.h>
-
+#include <SDL/SDL_opengl.h>
 #include <emscripten.h>
 
 // SDL Window
